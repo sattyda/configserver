@@ -37,4 +37,8 @@ public class SubService {
     public void update(Subscription subscription) {
         subRepo.save(subscription);
     }
+
+    public List<Subscription> getall() {
+        return subRepo.findAll();
+    }
 }

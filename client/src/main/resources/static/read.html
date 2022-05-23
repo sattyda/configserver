@@ -13,7 +13,9 @@
 </head>
 <body>
 <h3>Get Subscriber Email</h3>
-<input type="text" id="id" placeholder="Enter Id" /> <button id="send">Read</button>
+<input type="text" id="id" placeholder="Enter Id" /> <button id="send">Read</button> <br/>
+
+<button id="readall">Read ALL</button>
 </body>
 
 <script>
@@ -26,6 +28,25 @@
   function getData(input) {
     $.ajax({
         url : "/api/read/?id="+ input,
+        cache : false,
+        type : 'get',
+        dataType : 'json',
+        contentType: "application/json",
+        success : function (data) {
+            console.log(data);
+            alert(data.message);
+        }
+    });
+  }
+
+  $("#readall").click( function(){
+            getAllData();
+    });
+
+
+  function getAllData(input) {
+    $.ajax({
+        url : "/api/readall",
         cache : false,
         type : 'get',
         dataType : 'json',
