@@ -6,4 +6,5 @@ import springcofing.client.entities.Subscription;
 public interface SubRepo extends JpaRepository<Subscription, Long > {
 
 
+    void deleteByEmail(String email);
 }

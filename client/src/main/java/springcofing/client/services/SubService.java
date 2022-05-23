@@ -6,6 +6,9 @@ import springcofing.client.entities.Subscription;
 import springcofing.client.repos.SubRepo;
 import springcofing.client.utilities.Response;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SubService {
 
@@ -13,6 +16,25 @@ public class SubService {
     SubRepo subRepo;
 
     public void save(Subscription subscription) {
+        subRepo.save(subscription);
+    }
+
+    public Subscription get(Long id) {
+        Optional<Subscription> optional =  subRepo.findById(id);
+
+        if(optional.isPresent()){
+            return optional.get();
+        } else {
+            return new Subscription();
+        }
+    }
+
+    public void delete(Subscription subscription) {
+        subRepo.delete(subscription);
+
+    }
+
+    public void update(Subscription subscription) {
         subRepo.save(subscription);
     }
 }
