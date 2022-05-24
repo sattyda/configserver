@@ -26,8 +26,13 @@ public class WebController {
     }
 
     @RequestMapping(value ="/read" , method = RequestMethod.GET)
-    public List<Subscription> read(){
+    public String read(){
         return webService.getall();
+    }
+
+    @RequestMapping(value ="/add" , method = RequestMethod.GET)
+    public Response add(){
+        return webService.postadd();
     }
 
 }
