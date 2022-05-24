@@ -25,7 +25,7 @@ public class SubService {
         if(optional.isPresent()){
             return optional.get();
         } else {
-            return new Subscription();
+            return null;
         }
     }
 

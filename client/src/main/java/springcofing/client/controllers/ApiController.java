@@ -11,11 +11,12 @@ import springcofing.client.entities.Subscription;
 import springcofing.client.services.SubService;
 import springcofing.client.utilities.Response;
 
+import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@Endpoint(id = "subc")
-@Component
 public class ApiController {
 
     @Autowired
@@ -23,14 +24,12 @@ public class ApiController {
 
     @ResponseBody
     @PostMapping("/api/add")
-    @WriteOperation
     public Response add(@RequestBody Subscription subscription) {
         subService.save(subscription);
         return new Response("success" , "thank you");
     }
 
     @GetMapping("/api/read")
-    @ReadOperation
     public Subscription read(@RequestParam("id") Long id ) {
 //        subService.save(subscription);
 
@@ -42,12 +41,23 @@ public class ApiController {
     @GetMapping("/api/readall")
     public List<Subscription> readall() {
 //        subService.save(subscription);
-
           return subService.getall();
     }
 
+    @GetMapping(value = { "/read" , "/read/{id}" })
+    public List<Subscription> myread(@PathVariable("id") Optional<Long> id ) {
+        if(id.isPresent()) {
+            Subscription subscription =  subService.get(id.get());
+            List<Subscription> list = new ArrayList<>();
+            if(subscription != null) {
+                list.add(subscription);
+            }
+            return list;
+        } else {
+            return subService.getall();
+        }
+    }
 
-    @DeleteOperation
     @ResponseBody
     @DeleteMapping("/api/delete")
     public Response delete(@RequestBody Subscription subscription) {
