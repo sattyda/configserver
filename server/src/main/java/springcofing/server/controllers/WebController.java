@@ -25,23 +25,23 @@ public class WebController {
         return "all";
     }
 
-    @RequestMapping(value ="/read" , method = RequestMethod.GET)
+    @RequestMapping(value ="/server/read" , method = RequestMethod.GET)
     public  Subscription[] read(){
         return webService.getall();
     }
 
-    @RequestMapping(value ="/add" , method = RequestMethod.GET)
+    @RequestMapping(value ="/server/add" , method = RequestMethod.GET)
     public Response add(){
         return webService.postadd();
     }
 
-    @RequestMapping(value ="/delete" , method = RequestMethod.GET)
+    @RequestMapping(value ="/server/delete" , method = RequestMethod.GET)
     public Response delete(){
         return webService.delete();
     }
 
 
-    @RequestMapping(value ="/update" , method = RequestMethod.GET)
+    @RequestMapping(value ="/server/update" , method = RequestMethod.GET)
     public Response update(){
         return webService.update();
     }

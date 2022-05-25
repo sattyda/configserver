@@ -44,7 +44,7 @@ public class ApiController {
           return subService.getall();
     }
 
-    @GetMapping(value = { "/read" , "/read/{id}" })
+    @GetMapping(value = { "/api/read/json" , "/api/read/josn/{id}" })
     public List<Subscription> myread(@PathVariable("id") Optional<Long> id ) {
         if(id.isPresent()) {
             Subscription subscription =  subService.get(id.get());

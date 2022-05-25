@@ -28,7 +28,7 @@ public class WebService {
 
         HttpEntity entity = new HttpEntity<>( httpHeaders );
 
-        return restTemplate.exchange( "http://CLIENT/read" , HttpMethod.GET , entity, Subscription[].class ).getBody();
+        return restTemplate.exchange( "http://CLIENT/api/read/json" , HttpMethod.GET , entity, Subscription[].class ).getBody();
     }
 
     public Response postadd() {

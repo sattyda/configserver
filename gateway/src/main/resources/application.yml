@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CLIENT
+          uri: lb://CLIENT
+          predicates:
+            - Path=/api/**
+        - id: SERVER
+          uri: lb://SERVER
+          predicates:
+            - Path=/server/**
