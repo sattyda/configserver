@@ -20,7 +20,7 @@ public class WebService {
     @Autowired
     RestTemplate restTemplate;
 
-    public String getall() {
+    public  Subscription[] getall() {
 
         HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -28,7 +28,7 @@ public class WebService {
 
         HttpEntity entity = new HttpEntity<>( httpHeaders );
 
-        return restTemplate.exchange( "http://localhost:8080/read" , HttpMethod.GET , entity, String.class ).getBody();
+        return restTemplate.exchange( "http://CLIENT/read" , HttpMethod.GET , entity, Subscription[].class ).getBody();
     }
 
     public Response postadd() {
@@ -38,6 +38,24 @@ public class WebService {
 
         HttpEntity entity = new HttpEntity<Subscription>(  new Subscription(23L , "testing@gmail.com") , httpHeaders  );
 
-        return restTemplate.exchange( "http://localhost:8080/api/add" , HttpMethod.POST , entity, Response.class ).getBody();
+        return restTemplate.exchange( "http://CLIENT/api/add" , HttpMethod.POST , entity, Response.class ).getBody();
+    }
+
+    public Response delete() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        HttpEntity entity = new HttpEntity<Subscription>(  new Subscription(23L , "testing@gmail.com") , httpHeaders  );
+
+        return restTemplate.exchange( "http://CLIENT/api/delete" , HttpMethod.DELETE , entity, Response.class ).getBody();
+    }
+
+    public Response update() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        HttpEntity entity = new HttpEntity<Subscription>(  new Subscription(23L , "testing@gmail.com") , httpHeaders  );
+
+        return restTemplate.exchange( "http://CLIENT/api/update" , HttpMethod.PUT , entity, Response.class ).getBody();
     }
 }
